@@ -75,10 +75,10 @@
 		6CBDE7892D672F2300486400 = {
 			isa = PBXGroup;
 			children = (
-				6CBDE7942D672F2300486400 /* HimikoCoach */,
 				6CBDE7AA2D672F2B00486400 /* HimikoCoachTests */,
 				6CBDE7B42D672F2B00486400 /* HimikoCoachUITests */,
 				6CBDE7932D672F2300486400 /* Products */,
+				6CBDE7942D672F2300486400 /* HimikoCoach */,
 			);
 			sourceTree = "<group>";
 		};
@@ -399,6 +399,7 @@
 				DEVELOPMENT_TEAM = 6T7K6GCGX4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "アプリが使用中に位置情報を取得します。";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -428,6 +429,7 @@
 				DEVELOPMENT_TEAM = 6T7K6GCGX4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "アプリが使用中に位置情報を取得します。";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
