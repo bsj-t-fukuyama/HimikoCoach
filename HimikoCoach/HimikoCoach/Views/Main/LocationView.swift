@@ -60,7 +60,7 @@ struct LocationView: View {
                     VStack {
                         Spacer()
                         Button(action: {
-                            // Add action here
+                            AudioManager.shared.playJumpupSound()
                         }) {
                             Text("ここをタップ")
                                 .font(.headline)
