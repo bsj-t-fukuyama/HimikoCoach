@@ -9,21 +9,29 @@ import SwiftUI
 import CoreData
 
 struct ContentView: View {
-
     // タブの選択項目を保持する
     @State var selection = 1
+    @State var isPresented = false
 
     var body: some View {
-        
-        TabView {
-            Tab("マップ", systemImage: "mappin.and.ellipse.circle") {
-                LocationView()
+        ZStack {
+            TabView {
+                Tab("マップ", systemImage: "mappin.and.ellipse.circle") {
+                    LocationView()
+                        .onAppear {
+                            self.isPresented = true
+                        }
+                }
+                .badge(2)
+                
+                
+                Tab("Account", systemImage: "person.crop.circle") {
+                    //
+                }
             }
-            .badge(2)
-
-
-            Tab("Account", systemImage: "person.crop.circle") {
-                //LocationView()
+            
+            if isPresented {
+                EventPopupView(isPresented: $isPresented, title: "タイトル")
             }
         }
 
@@ -33,3 +41,4 @@ struct ContentView: View {
 #Preview{
     ContentView()
 }
+

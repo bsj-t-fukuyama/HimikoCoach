@@ -31,7 +31,6 @@ class CustomAnnotation: NSObject, MKAnnotation {
 }
 
 struct LocationView: View {
-    
     @StateObject private var locationManager = LocationManager()
     @State var position: MapCameraPosition = .automatic
     @State private var region = MKCoordinateRegion(

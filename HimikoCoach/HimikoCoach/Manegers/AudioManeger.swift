@@ -12,6 +12,22 @@ final class AudioManager {
     
     var player: AVAudioPlayer?
     
+    init(player: AVAudioPlayer? = nil) {
+        self.player = player
+        
+        configureAudioSession()
+    }
+    
+    private func configureAudioSession() {
+        let audioSession = AVAudioSession.sharedInstance()
+        do {
+            try audioSession.setCategory(.ambient, mode: .default, options: .mixWithOthers)
+            try audioSession.setActive(true, options: [])
+        } catch {
+            print("Audio Session configuration failed: \(error.localizedDescription)")
+        }
+    }
+    
     func playJumpupSound() {
         guard let url = Bundle.main.url(forResource: "jumpup", withExtension: "mp3") else { return }
         do {
