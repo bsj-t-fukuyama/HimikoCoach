@@ -16,6 +16,8 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var authorizationStatus: CLAuthorizationStatus?
     @Published var locations: [CLLocationCoordinate2D] = []  // 位置情報の履歴を保持
     
+    @Published var userLocation: CLLocationCoordinate2D = CLLocationCoordinate2D()
+    
     override init() {
         super.init()
         locationManager.delegate = self
@@ -49,6 +51,7 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         if let lastLocation = locations.last {
             DispatchQueue.main.async {
                 self.location = lastLocation
+                self.userLocation = lastLocation.coordinate
                 self.locationError = nil  // エラーメッセージをクリア
                 self.locations.append(lastLocation.coordinate)  // 位置情報を記録
             }

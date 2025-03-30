@@ -7,11 +7,13 @@
 
 import SwiftUI
 import CoreData
+import SpriteKit
 
 struct ContentView: View {
     // タブの選択項目を保持する
     @State var selection = 1
     @State var isPresented = false
+    @StateObject private var gvm = GlobalViewModel.shared
 
     var body: some View {
         ZStack {
@@ -25,8 +27,12 @@ struct ContentView: View {
                 .badge(2)
                 
                 
-                Tab("Account", systemImage: "person.crop.circle") {
-                    //
+                Tab("実績", systemImage: "person.crop.circle") {
+                    AccountView()
+                }
+                
+                Tab("戦力強化", systemImage: "person.crop.circle") {
+                    ConscriptionView()
                 }
             }
             
@@ -35,8 +41,8 @@ struct ContentView: View {
             }
         }
 
-    } // body
-} // View
+    }
+}
 
 #Preview{
     ContentView()

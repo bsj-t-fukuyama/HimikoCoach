@@ -14,7 +14,10 @@ struct Location: Identifiable {
     let coordinate: CLLocationCoordinate2D
 }
 
-extension CLLocationCoordinate2D {
+extension CLLocationCoordinate2D: Equatable {
+    public static func == (lhs: CLLocationCoordinate2D, rhs: CLLocationCoordinate2D) -> Bool {
+        return lhs.latitude == rhs.latitude && lhs.longitude == rhs.longitude
+    }
     static let akabanebashiSta = CLLocationCoordinate2D(latitude: 35.65501032986615, longitude: 139.74400151609868)
     static let shibakouenSta = CLLocationCoordinate2D(latitude: 35.653993895534335, longitude: 139.74982257497166)
 }
@@ -32,11 +35,22 @@ class CustomAnnotation: NSObject, MKAnnotation {
 
 struct LocationView: View {
     @StateObject private var locationManager = LocationManager()
+    @StateObject private var gvm = GlobalViewModel.shared
     @State var position: MapCameraPosition = .automatic
     @State private var region = MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: 35.681236, longitude: 139.767125),
         span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
     )
+    
+    func checkProximity(userLocation: CLLocationCoordinate2D, targetLocation: CLLocationCoordinate2D, radius: Double) {
+        let userCLLocation = CLLocation(latitude: userLocation.latitude, longitude: userLocation.longitude)
+        let targetCLLocation = CLLocation(latitude: targetLocation.latitude, longitude: targetLocation.longitude)
+        let distance = userCLLocation.distance(from: targetCLLocation)
+        
+        if distance <= radius {
+            print("近い！")
+        }
+    }
     
     var body: some View {
         VStack {
@@ -44,10 +58,40 @@ struct LocationView: View {
                 Map(position: $position) {
                     UserAnnotation.init()
                     Marker("赤羽橋駅", coordinate: .akabanebashiSta)
-                    Marker("芝公園駅", coordinate: .shibakouenSta)
+                    MapCircle(center: .akabanebashiSta, radius: 150)
+                        .strokeStyle(style: .init(lineWidth: 2, lineCap: .round, lineJoin: .round, dash: []))
+                        .foregroundStyle(.blue.opacity(0.3))
+                        .mapOverlayLevel(level: .aboveLabels)
+                    Annotation("芝公園駅",coordinate: .shibakouenSta, anchor: .bottom) {
+                      VStack{
+                         Image("MainImage")
+                              .resizable()
+                              .frame(width: 50, height: 50)
+                              .cornerRadius(25)
+                         //Text("芝公園駅")
+                      }
+                    }
+                    MapCircle(center: .shibakouenSta, radius: 150)
+                        .strokeStyle(style: .init(lineWidth: 2, lineCap: .round, lineJoin: .round, dash: []))
+                        .foregroundStyle(.blue.opacity(0.3))
+                        .mapOverlayLevel(level: .aboveLabels)
+                    //Marker("芝公園駅", coordinate: .shibakouenSta)
                 }
                 .mapControls {
                     MapUserLocationButton()
+                }
+                //.mapStyle(.hybrid()) // 衛星画像Ver
+                .onChange(of: locationManager.userLocation) { newLocation in
+                    checkProximity(
+                        userLocation: newLocation,
+                        targetLocation: .akabanebashiSta,
+                        radius: 150
+                    )
+//                    checkProximity(
+//                        userLocation: newLocation,
+//                        targetLocation: .shibakouenSta,
+//                        radius: 1000
+//                    )
                 }
                 .onAppear {
                     if let firstLocation = locationManager.locations.first {
@@ -59,14 +103,14 @@ struct LocationView: View {
                     VStack {
                         Spacer()
                         Button(action: {
-                            AudioManager.shared.playJumpupSound()
+                            AudioManager.shared.playBoundSound()
                         }) {
                             Text("ここをタップ")
                                 .font(.headline)
                                 .frame(width: 270, height: 40)
-                                .background(Color.yellow)
+                                .background(Color("BrandColor"))
                                 .cornerRadius(10)
-                                .foregroundColor(.black)
+                                .foregroundColor(.white)
                                 .padding(.horizontal, 20)
                         }
                         .buttonStyle(CustomButtonStyle())
@@ -86,6 +130,7 @@ struct LocationView: View {
                     }
             }
         }
+        .toolbar(gvm.isShowTabForVisiblity, for: .tabBar)
     }
 }
 
