@@ -14,6 +14,7 @@ final class GlobalViewModel: ObservableObject {
     
     @Published var isShowTab = true
     @Published var sceneIsPresented = false
+    @Published var isOnSound = false
     
     var isShowTabForVisiblity: Visibility {
         isShowTab ? .visible : .hidden

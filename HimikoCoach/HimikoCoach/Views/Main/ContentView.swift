@@ -14,10 +14,10 @@ struct ContentView: View {
     @State var selection = 1
     @State var isPresented = false
     @StateObject private var gvm = GlobalViewModel.shared
-    @StateObject var viewModel = AuthViewModel()
+    @StateObject var authManager: AuthManager = .shared
 
     var body: some View {
-        if viewModel.isAuthenticated {
+        if authManager.isAuthenticated {
             ZStack {
                 TabView {
                     Tab("マップ", systemImage: "mappin.and.ellipse.circle") {

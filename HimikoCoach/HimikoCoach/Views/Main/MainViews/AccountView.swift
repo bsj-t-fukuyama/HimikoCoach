@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AccountView: View {
     @StateObject private var gvm = GlobalViewModel.shared
-    @StateObject var authViewModel = AuthViewModel()
+    @StateObject var authManager: AuthManager = .shared
     
     var body: some View {
         VStack {
@@ -21,7 +21,7 @@ struct AccountView: View {
                 
                 Spacer()
                 Button(action: {
-                    authViewModel.signOut()
+                    authManager.signOut()
                 }) {
                     buttonView
                 }

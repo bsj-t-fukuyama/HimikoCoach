@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct AuthView: View {
-    @State var isShowSignInView: Bool = false
-    @State var isShowLoginView: Bool = false
+    @StateObject var authManager = AuthManager.shared
+    private var audioManager = AudioManager.shared
+    
     var body: some View {
         NavigationStack {
             ZStack {
@@ -24,7 +25,7 @@ struct AuthView: View {
                     Spacer()
                     
                     Button(action: {
-                        isShowLoginView = true
+                        authManager.isShowLoginView = true
                     }) {
                         Text("ログイン")
                             .font(.title)
@@ -34,12 +35,12 @@ struct AuthView: View {
                             .foregroundColor(.white)
                             .cornerRadius(10)
                     }
-                    .sheet(isPresented: $isShowLoginView) {
+                    .sheet(isPresented: $authManager.isShowLoginView) {
                         LoginView()
                     }
                     
                     Button(action: {
-                        isShowSignInView = true
+                        authManager.isShowSignInView = true
                     }) {
                         Text("新規登録")
                             .font(.title)
@@ -53,7 +54,7 @@ struct AuthView: View {
                             .cornerRadius(10)
                             .padding(.vertical, 40)
                     }
-                    .sheet(isPresented: $isShowSignInView) {
+                    .sheet(isPresented: $authManager.isShowSignInView) {
                         SignInView()
                     }
                     .padding(.bottom, 50)

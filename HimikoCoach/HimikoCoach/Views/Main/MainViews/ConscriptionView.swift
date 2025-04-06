@@ -23,6 +23,7 @@ struct ConscriptionView: View {
                             Task { @MainActor in
                                 gvm.sceneIsPresented = true
                                 gvm.isShowTab = false
+                                gvm.isOnSound = true
                             }
                         }
                         .navigationDestination(isPresented: $gvm.sceneIsPresented) {
