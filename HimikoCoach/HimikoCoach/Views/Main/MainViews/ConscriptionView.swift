@@ -23,12 +23,11 @@ struct ConscriptionView: View {
                             Task { @MainActor in
                                 gvm.sceneIsPresented = true
                                 gvm.isShowTab = false
-                                print(gvm.isShowTab)
                             }
                         }
                         .navigationDestination(isPresented: $gvm.sceneIsPresented) {
                             GeometryReader {
-                                SpriteView(scene: FirstScene(size: $0.size))
+                                SpriteView(scene: StartScene(size: $0.size))
                                     .edgesIgnoringSafeArea(.all)
                                     .navigationBarBackButtonHidden(true)
                             }

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AccountView: View {
     @StateObject private var gvm = GlobalViewModel.shared
+    @StateObject var authViewModel = AuthViewModel()
     
     var body: some View {
         VStack {
@@ -17,10 +18,32 @@ struct AccountView: View {
             ScrollView {
                 Text("hoge")
                     .background(Color.red)
-            }
+                
+                Spacer()
+                Button(action: {
+                    authViewModel.signOut()
+                }) {
+                    buttonView
+                }
+            }.padding(10)
         }
         .ignoresSafeArea()
         .toolbar(gvm.isShowTabForVisiblity, for: .tabBar)
+    }
+    
+    private var buttonView: some View {
+        HStack {
+            Spacer()
+            Text("サインアウト")
+                .font(.system(size: 17).bold())
+                .multilineTextAlignment(.center)
+                .foregroundColor(Color.white)
+            Spacer()
+        }
+        .padding(12)
+        .frame(maxWidth: .infinity, minHeight: 48, maxHeight: 48, alignment: .center)
+        .background(Color.red)
+        .cornerRadius(4)
     }
 }
 
@@ -40,8 +63,4 @@ struct HeaderView: View {
         }
         .background(Color("BrandColor"))
     }
-}
-
-#Preview{
-    AccountView()
 }

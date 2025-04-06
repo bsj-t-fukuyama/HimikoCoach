@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6C809C6A2D9FAF8E00AFD156 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 6C809C692D9FAF8E00AFD156 /* FirebaseAnalytics */; };
+		6C809C6C2D9FB07700AFD156 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 6C809C6B2D9FB07700AFD156 /* FirebaseAnalyticsOnDeviceConversion */; };
+		6C809C6E2D9FB07700AFD156 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 6C809C6D2D9FB07700AFD156 /* FirebaseAnalyticsWithoutAdIdSupport */; };
+		6C809C702D9FB07700AFD156 /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 6C809C6F2D9FB07700AFD156 /* FirebaseAppCheck */; };
+		6C809C722D9FB07700AFD156 /* FirebaseAppDistribution-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 6C809C712D9FB07700AFD156 /* FirebaseAppDistribution-Beta */; };
+		6C809CB32D9FBACB00AFD156 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 6C809CB22D9FBACB00AFD156 /* FirebaseAuth */; };
 		6CBC94732D8C42B100113478 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 6CBC94722D8C42B100113478 /* Lottie */; };
 /* End PBXBuildFile section */
 
@@ -33,9 +39,22 @@
 		6CBDE7B12D672F2B00486400 /* HimikoCoachUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HimikoCoachUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		6C809CB72D9FC4DF00AFD156 /* Exceptions for "HimikoCoach" folder in "HimikoCoach" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 6CBDE7912D672F2300486400 /* HimikoCoach */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		6CBDE7942D672F2300486400 /* HimikoCoach */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				6C809CB72D9FC4DF00AFD156 /* Exceptions for "HimikoCoach" folder in "HimikoCoach" target */,
+			);
 			path = HimikoCoach;
 			sourceTree = "<group>";
 		};
@@ -56,7 +75,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C809C6A2D9FAF8E00AFD156 /* FirebaseAnalytics in Frameworks */,
+				6C809C6C2D9FB07700AFD156 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
 				6CBC94732D8C42B100113478 /* Lottie in Frameworks */,
+				6C809C702D9FB07700AFD156 /* FirebaseAppCheck in Frameworks */,
+				6C809C6E2D9FB07700AFD156 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
+				6C809CB32D9FBACB00AFD156 /* FirebaseAuth in Frameworks */,
+				6C809C722D9FB07700AFD156 /* FirebaseAppDistribution-Beta in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +102,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6C809CB12D9FBACB00AFD156 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		6CBDE7892D672F2300486400 = {
 			isa = PBXGroup;
 			children = (
@@ -84,6 +116,7 @@
 				6CBDE7B42D672F2B00486400 /* HimikoCoachUITests */,
 				6CBDE7932D672F2300486400 /* Products */,
 				6CBDE7942D672F2300486400 /* HimikoCoach */,
+				6C809CB12D9FBACB00AFD156 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -118,6 +151,12 @@
 			name = HimikoCoach;
 			packageProductDependencies = (
 				6CBC94722D8C42B100113478 /* Lottie */,
+				6C809C692D9FAF8E00AFD156 /* FirebaseAnalytics */,
+				6C809C6B2D9FB07700AFD156 /* FirebaseAnalyticsOnDeviceConversion */,
+				6C809C6D2D9FB07700AFD156 /* FirebaseAnalyticsWithoutAdIdSupport */,
+				6C809C6F2D9FB07700AFD156 /* FirebaseAppCheck */,
+				6C809C712D9FB07700AFD156 /* FirebaseAppDistribution-Beta */,
+				6C809CB22D9FBACB00AFD156 /* FirebaseAuth */,
 			);
 			productName = HimikoCoach;
 			productReference = 6CBDE7922D672F2300486400 /* HimikoCoach.app */;
@@ -203,6 +242,8 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				6CBC94712D8C42B100113478 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				6C809C682D9FAF8E00AFD156 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				6C809CB02D9FBA4400AFD156 /* XCRemoteSwiftPackageReference "FirebaseUI-iOS" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 6CBDE7932D672F2300486400 /* Products */;
@@ -408,6 +449,7 @@
 				DEVELOPMENT_TEAM = 6T7K6GCGX4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HimikoCoach/Info.plist;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "アプリが使用中に位置情報を取得します。";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -438,6 +480,7 @@
 				DEVELOPMENT_TEAM = 6T7K6GCGX4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HimikoCoach/Info.plist;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "アプリが使用中に位置情報を取得します。";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -571,6 +614,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		6C809C682D9FAF8E00AFD156 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.11.0;
+			};
+		};
+		6C809CB02D9FBA4400AFD156 /* XCRemoteSwiftPackageReference "FirebaseUI-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/FirebaseUI-iOS.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		6CBC94712D8C42B100113478 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
@@ -582,6 +641,36 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		6C809C692D9FAF8E00AFD156 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6C809C682D9FAF8E00AFD156 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		6C809C6B2D9FB07700AFD156 /* FirebaseAnalyticsOnDeviceConversion */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6C809C682D9FAF8E00AFD156 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsOnDeviceConversion;
+		};
+		6C809C6D2D9FB07700AFD156 /* FirebaseAnalyticsWithoutAdIdSupport */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6C809C682D9FAF8E00AFD156 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsWithoutAdIdSupport;
+		};
+		6C809C6F2D9FB07700AFD156 /* FirebaseAppCheck */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6C809C682D9FAF8E00AFD156 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAppCheck;
+		};
+		6C809C712D9FB07700AFD156 /* FirebaseAppDistribution-Beta */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6C809C682D9FAF8E00AFD156 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseAppDistribution-Beta";
+		};
+		6C809CB22D9FBACB00AFD156 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6C809C682D9FAF8E00AFD156 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
 		6CBC94722D8C42B100113478 /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 6CBC94712D8C42B100113478 /* XCRemoteSwiftPackageReference "lottie-ios" */;
