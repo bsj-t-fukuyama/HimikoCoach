@@ -11,7 +11,17 @@ import SwiftUI
 final class StartScene: SKScene {
     @Published var gvm = GlobalViewModel.shared
     @Published var audioManager = AudioManager.shared
+    @Published var viewModel: GameSceneViewModel
     private var hostingController: UIViewController?
+    
+    init(size: CGSize, stringArray: [String]) {
+        self.viewModel = .init(stringArray: stringArray)
+        super.init(size: size)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func didMove(to view: SKView) {
         // SwiftUIビューを追加
@@ -49,22 +59,29 @@ final class StartScene: SKScene {
         }
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        // 次のシーンへ遷移
+    func presentNextFirstScene() {
         if let hostingController = hostingController {
-            let nextScene = FirstScene(size: size, hostingController: hostingController)
+            let nextScene = FirstScene(size: size, hostingController: hostingController, startScene: self, viewModel: viewModel)
             view?.presentScene(nextScene, transition: .init(ciFilter: CIFilter(name: "CIAccordionFoldTransition")!, duration: 1.0))
         }
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        presentNextFirstScene()
     }
 }
 
 final class FirstScene: SKScene {
     @Published var gvm = GlobalViewModel.shared
     @Published var audioManager = AudioManager.shared
+    @Published var viewModel: GameSceneViewModel
     private var hostingController: UIViewController
+    private var startScene: StartScene
 
-    init(size: CGSize, hostingController: UIViewController) {
+    init(size: CGSize, hostingController: UIViewController, startScene: StartScene, viewModel: GameSceneViewModel) {
         self.hostingController = hostingController
+        self.startScene = startScene
+        self.viewModel = viewModel
         super.init(size: size)
     }
 
@@ -91,30 +108,40 @@ final class FirstScene: SKScene {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-            let transitionDuration = 1.0
-
-            // トランジションアニメーションの開始
-            UIView.animate(withDuration: transitionDuration, animations: {
-                // ここにアニメーションを追加する場合は記述
-            }) { [weak self] _ in
-                // ParticleView を含む hostingController を削除
-                self?.hostingController.view.removeFromSuperview()
-            }
-
-            //音楽を止める
-            audioManager.stopGoAheadSound()
-            gvm.isOnSound = false
+        let transitionDuration = 1.0
         
-            // 次のシーンへ遷移
-            let nextScene = SecondScene(size: size)
-            view?.presentScene(nextScene, transition: .doorway(withDuration: transitionDuration))
+        // トランジションアニメーションの開始
+        UIView.animate(withDuration: transitionDuration, animations: {
+            // ここにアニメーションを追加する場合は記述
+        }) { [weak self] _ in
+            // ParticleView を含む hostingController を削除
+            self?.hostingController.view.removeFromSuperview()
         }
+        
+        //音楽を止める
+        audioManager.stopGoAheadSound()
+        gvm.isOnSound = false
+        
+        // 次のシーンへ遷移
+        let nextScene = SecondScene(size: size, viewModel: viewModel)
+        view?.presentScene(nextScene, transition: .doorway(withDuration: transitionDuration))
+    }
 }
 
 
 final class SecondScene: SKScene {
     @Published var audioManager = AudioManager.shared
     @Published var gvm = GlobalViewModel.shared
+    @ObservedObject var viewModel: GameSceneViewModel
+    
+    init(size: CGSize, viewModel: GameSceneViewModel) {
+        self.viewModel = viewModel
+        super.init(size: size)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func didMove(to view: SKView) {
         Task { @MainActor in
@@ -151,11 +178,18 @@ final class SecondScene: SKScene {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        view?.presentScene(StartScene(size: size), transition: .doorway(withDuration: 1.0))
-        
-        Task { @MainActor in
-            gvm.sceneIsPresented = false
-            gvm.isShowTab = true
+        viewModel.incrementIndex()
+        print("viewModel.currentIndex:\(viewModel.currentIndex)")
+        if !viewModel.isFinished {
+            // もう一度SecondSceneを表示
+            let nextScene = SecondScene(size: size, viewModel: viewModel)
+            view?.presentScene(nextScene, transition: .doorway(withDuration: 1.0))
+        } else {
+            Task { @MainActor in
+                gvm.sceneIsPresented = false
+                gvm.isShowTab = true
+                viewModel.resetIndex()
+            }
         }
     }
 }

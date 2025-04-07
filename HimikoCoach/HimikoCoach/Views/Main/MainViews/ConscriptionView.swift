@@ -28,7 +28,7 @@ struct ConscriptionView: View {
                         }
                         .navigationDestination(isPresented: $gvm.sceneIsPresented) {
                             GeometryReader {
-                                SpriteView(scene: StartScene(size: $0.size))
+                                SpriteView(scene: StartScene(size: $0.size, stringArray: ["0", "1", "2", "3", "4"]))
                                     .edgesIgnoringSafeArea(.all)
                                     .navigationBarBackButtonHidden(true)
                             }

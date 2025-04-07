@@ -9,7 +9,8 @@ import SwiftUI
 
 struct AccountView: View {
     @StateObject private var gvm = GlobalViewModel.shared
-    @StateObject var authManager: AuthManager = .shared
+    @StateObject private var alertViewModel = AlertViewModel.shared
+    private var viewModel = AccountViewModel()
     
     var body: some View {
         VStack {
@@ -21,7 +22,10 @@ struct AccountView: View {
                 
                 Spacer()
                 Button(action: {
-                    authManager.signOut()
+                    print("ボタン")
+                    
+                    viewModel.showSignOutAlert()
+
                 }) {
                     buttonView
                 }
@@ -29,12 +33,15 @@ struct AccountView: View {
         }
         .ignoresSafeArea()
         .toolbar(gvm.isShowTabForVisiblity, for: .tabBar)
+        .alert(item: $alertViewModel.alert) { alertItem in
+            alertItem.alert
+        }
     }
     
     private var buttonView: some View {
         HStack {
             Spacer()
-            Text("サインアウト")
+            Text("ログアウト")
                 .font(.system(size: 17).bold())
                 .multilineTextAlignment(.center)
                 .foregroundColor(Color.white)

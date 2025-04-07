@@ -29,18 +29,21 @@ struct LoginView: View {
                         
                         if authManager.errMessage != "" {
                             Text(authManager.errMessage)
-                                .font(.subheadline)
-                                .fontWeight(.semibold)
-                                .foregroundStyle(Color.red)
+                                .font(.footnote) // フォントを小さくします
+                                .fontWeight(.regular) // フォントの太さを'normal'にします
+                                .foregroundColor(Color.red.opacity(0.7)) // 色を薄くします（70％の不透明度）
                         }
                         
-                        Text("パスワード:")
-                            .font(.subheadline)
-                            .fontWeight(.semibold)
-                        SecureField("パスワードを入力してください", text: $viewModel.password)
-                            .padding()
-                            .background(Color(.secondarySystemBackground))
-                            .cornerRadius(8)
+                        VStack(alignment: .leading) {
+                            Text("パスワード:")
+                                .font(.subheadline)
+                                .fontWeight(.semibold)
+                            
+                            TextField("パスワードを入力してください", text: $viewModel.password)
+                                .padding()
+                                .background(Color(.secondarySystemBackground))
+                                .cornerRadius(8)
+                        }
                     }
                     .padding(12)
                     
@@ -55,7 +58,7 @@ struct LoginView: View {
             .toolbar{
                 ToolbarItem(placement: .navigationBarLeading){
                     Button(action: {
-                        authManager.isShowLoginView = false
+                        authManager.closeLoginView()
                     }) {
                         Text("戻る")
                             .foregroundStyle(Color("BrandColor"))
@@ -66,20 +69,37 @@ struct LoginView: View {
     }
     
     private var floatButton: some View {
-        Button(action: {
-            viewModel.login()
-        }) {
-            HStack {
-                Spacer()
-                Text("確定")
-                    .font(.system(size: 17).bold())
-                    .multilineTextAlignment(.center)
-                    .foregroundColor(.white)
-                Spacer()
+        Group {
+            if viewModel.checkEmailAndPasswordIsValid {
+                Button(action: {
+                    viewModel.login()
+                }) {
+                    HStack {
+                        Spacer()
+                        Text("確定")
+                            .font(.system(size: 17).bold())
+                            .multilineTextAlignment(.center)
+                            .foregroundColor(.white)
+                        Spacer()
+                    }
+                    .frame(maxWidth: .infinity, minHeight: 48, maxHeight: 48, alignment: .center)
+                    .background(Color("BrandColor"))
+                    .cornerRadius(8)
+                    
+                }
+            } else {
+                HStack {
+                    Spacer()
+                    Text("確定")
+                        .font(.system(size: 17).bold())
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(.white)
+                    Spacer()
+                }
+                .frame(maxWidth: .infinity, minHeight: 48, maxHeight: 48, alignment: .center)
+                .background(Color.gray)
+                .cornerRadius(8)
             }
-            .frame(maxWidth: .infinity, minHeight: 48, maxHeight: 48, alignment: .center)
-            .background(Color("BrandColor"))
-            .cornerRadius(8)
         }
     }
 }

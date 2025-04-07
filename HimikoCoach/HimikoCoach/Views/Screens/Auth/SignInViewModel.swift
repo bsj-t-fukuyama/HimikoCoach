@@ -14,6 +14,14 @@ final class SignInViewModel: ObservableObject {
     @Published var password: String = ""
     private let authManager: AuthManager = .shared
     
+    var checkEmailAndPasswordIsValid: Bool {
+        if self.email == "" || self.password == "" {
+            return false
+        }
+        
+        return true
+    }
+    
     init() {
         authManager.errMessage = ""
     }

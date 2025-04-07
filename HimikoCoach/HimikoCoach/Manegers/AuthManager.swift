@@ -36,7 +36,7 @@ class AuthManager: ObservableObject {
     }
 
     private func observeAuthChanges() {
-        Auth.auth().addStateDidChangeListener { [weak self] _, user in
+        _ = Auth.auth().addStateDidChangeListener { [weak self] _, user in
             DispatchQueue.main.async {
                 self?.isAuthenticated = user != nil
             }
@@ -84,5 +84,11 @@ class AuthManager: ObservableObject {
                 }
             }
         }
+    }
+}
+
+extension AuthManager {
+    func closeLoginView() {
+        isShowLoginView = false
     }
 }
