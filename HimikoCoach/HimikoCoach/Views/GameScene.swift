@@ -14,8 +14,8 @@ final class StartScene: SKScene {
     @Published var viewModel: GameSceneViewModel
     private var hostingController: UIViewController?
     
-    init(size: CGSize, stringArray: [String]) {
-        self.viewModel = .init(stringArray: stringArray)
+    init(size: CGSize, charactersArray: [DummyCharacter]) {
+        self.viewModel = .init(charactersArray: charactersArray)
         super.init(size: size)
     }
     
@@ -167,7 +167,7 @@ final class SecondScene: SKScene {
         
         addChild(imageNode)
         
-        let backtext = SKLabelNode(text: "Back To war!")
+        let backtext = SKLabelNode(text: viewModel.charactersArray[viewModel.currentIndex].rank + ": " + viewModel.charactersArray[viewModel.currentIndex].name)
         backtext.fontName = "Helvetica-Bold"
         backtext.fontSize = 25
         backtext.fontColor = .white

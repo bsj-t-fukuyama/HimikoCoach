@@ -7,13 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6C809C6A2D9FAF8E00AFD156 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 6C809C692D9FAF8E00AFD156 /* FirebaseAnalytics */; };
-		6C809C6C2D9FB07700AFD156 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 6C809C6B2D9FB07700AFD156 /* FirebaseAnalyticsOnDeviceConversion */; };
-		6C809C6E2D9FB07700AFD156 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 6C809C6D2D9FB07700AFD156 /* FirebaseAnalyticsWithoutAdIdSupport */; };
-		6C809C702D9FB07700AFD156 /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 6C809C6F2D9FB07700AFD156 /* FirebaseAppCheck */; };
-		6C809C722D9FB07700AFD156 /* FirebaseAppDistribution-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 6C809C712D9FB07700AFD156 /* FirebaseAppDistribution-Beta */; };
-		6C809CB32D9FBACB00AFD156 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 6C809CB22D9FBACB00AFD156 /* FirebaseAuth */; };
-		6CBC94732D8C42B100113478 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 6CBC94722D8C42B100113478 /* Lottie */; };
+		6CBD35B72DA4FEA3009E910D /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 6CBC94722D8C42B100113478 /* Lottie */; };
+		6CBD35B82DA4FEA3009E910D /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 6C809C692D9FAF8E00AFD156 /* FirebaseAnalytics */; };
+		6CBD35B92DA4FEA3009E910D /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 6C809C6B2D9FB07700AFD156 /* FirebaseAnalyticsOnDeviceConversion */; };
+		6CBD35BA2DA4FEA3009E910D /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 6C809C6D2D9FB07700AFD156 /* FirebaseAnalyticsWithoutAdIdSupport */; };
+		6CBD35BB2DA4FEA3009E910D /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 6C809C6F2D9FB07700AFD156 /* FirebaseAppCheck */; };
+		6CBD35BC2DA4FEA3009E910D /* FirebaseAppDistribution-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 6C809C712D9FB07700AFD156 /* FirebaseAppDistribution-Beta */; };
+		6CBD35BD2DA4FEA3009E910D /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 6C809CB22D9FBACB00AFD156 /* FirebaseAuth */; };
+		6CBD36292DA50588009E910D /* SwiftyUserDefaults in Frameworks */ = {isa = PBXBuildFile; productRef = 6CBD36282DA50588009E910D /* SwiftyUserDefaults */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,13 +76,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6C809C6A2D9FAF8E00AFD156 /* FirebaseAnalytics in Frameworks */,
-				6C809C6C2D9FB07700AFD156 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
-				6CBC94732D8C42B100113478 /* Lottie in Frameworks */,
-				6C809C702D9FB07700AFD156 /* FirebaseAppCheck in Frameworks */,
-				6C809C6E2D9FB07700AFD156 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
-				6C809CB32D9FBACB00AFD156 /* FirebaseAuth in Frameworks */,
-				6C809C722D9FB07700AFD156 /* FirebaseAppDistribution-Beta in Frameworks */,
+				6CBD35BD2DA4FEA3009E910D /* FirebaseAuth in Frameworks */,
+				6CBD35BC2DA4FEA3009E910D /* FirebaseAppDistribution-Beta in Frameworks */,
+				6CBD35BB2DA4FEA3009E910D /* FirebaseAppCheck in Frameworks */,
+				6CBD35BA2DA4FEA3009E910D /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
+				6CBD35B92DA4FEA3009E910D /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
+				6CBD35B82DA4FEA3009E910D /* FirebaseAnalytics in Frameworks */,
+				6CBD35B72DA4FEA3009E910D /* Lottie in Frameworks */,
+				6CBD36292DA50588009E910D /* SwiftyUserDefaults in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,6 +159,7 @@
 				6C809C6F2D9FB07700AFD156 /* FirebaseAppCheck */,
 				6C809C712D9FB07700AFD156 /* FirebaseAppDistribution-Beta */,
 				6C809CB22D9FBACB00AFD156 /* FirebaseAuth */,
+				6CBD36282DA50588009E910D /* SwiftyUserDefaults */,
 			);
 			productName = HimikoCoach;
 			productReference = 6CBDE7922D672F2300486400 /* HimikoCoach.app */;
@@ -244,6 +247,7 @@
 				6CBC94712D8C42B100113478 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				6C809C682D9FAF8E00AFD156 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				6C809CB02D9FBA4400AFD156 /* XCRemoteSwiftPackageReference "FirebaseUI-iOS" */,
+				6C809CF32DA4A8BD00AFD156 /* XCRemoteSwiftPackageReference "SwiftyUserDefaults" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 6CBDE7932D672F2300486400 /* Products */;
@@ -456,6 +460,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -487,6 +492,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -626,8 +632,16 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/FirebaseUI-iOS.git";
 			requirement = {
-				branch = master;
+				branch = main;
 				kind = branch;
+			};
+		};
+		6C809CF32DA4A8BD00AFD156 /* XCRemoteSwiftPackageReference "SwiftyUserDefaults" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sunshinejr/SwiftyUserDefaults.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.3.0;
 			};
 		};
 		6CBC94712D8C42B100113478 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
@@ -675,6 +689,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6CBC94712D8C42B100113478 /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
+		};
+		6CBD36282DA50588009E910D /* SwiftyUserDefaults */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6C809CF32DA4A8BD00AFD156 /* XCRemoteSwiftPackageReference "SwiftyUserDefaults" */;
+			productName = SwiftyUserDefaults;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

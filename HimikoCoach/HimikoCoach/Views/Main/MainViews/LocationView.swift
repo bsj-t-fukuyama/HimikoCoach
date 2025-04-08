@@ -14,6 +14,12 @@ struct Location: Identifiable {
     let coordinate: CLLocationCoordinate2D
 }
 
+struct TargetLocationData: Identifiable {
+    var id: Int
+    var coordinate: CLLocationCoordinate2D
+    var isAchived: Bool
+}
+
 extension CLLocationCoordinate2D: Equatable {
     public static func == (lhs: CLLocationCoordinate2D, rhs: CLLocationCoordinate2D) -> Bool {
         return lhs.latitude == rhs.latitude && lhs.longitude == rhs.longitude
@@ -42,40 +48,51 @@ struct LocationView: View {
         span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
     )
     
-    func checkProximity(userLocation: CLLocationCoordinate2D, targetLocation: CLLocationCoordinate2D, radius: Double) {
+    func checkProximity(userLocation: CLLocationCoordinate2D, radius: Double, targetLocation: TargetLocationData) {
         let userCLLocation = CLLocation(latitude: userLocation.latitude, longitude: userLocation.longitude)
-        let targetCLLocation = CLLocation(latitude: targetLocation.latitude, longitude: targetLocation.longitude)
+        let targetCLLocation = CLLocation(latitude: targetLocation.coordinate.latitude, longitude: targetLocation.coordinate.longitude)
         let distance = userCLLocation.distance(from: targetCLLocation)
+        
+        var updatedTargetLocation = targetLocation
         
         if distance <= radius {
             print("近い！")
+            updatedTargetLocation.isAchived = false
+            print("---:\(updatedTargetLocation.isAchived)")
         }
     }
     
+    var shibakouenData = TargetLocationData(
+        id: 1, coordinate: .shibakouenSta, isAchived: false
+    )
+    var akabanebashiData = TargetLocationData(
+        id: 2, coordinate: .akabanebashiSta, isAchived: false
+    )
+
     var body: some View {
         VStack {
             if !locationManager.locations.isEmpty {
                 Map(position: $position) {
                     UserAnnotation.init()
-                    Marker("赤羽橋駅", coordinate: .akabanebashiSta)
-                    MapCircle(center: .akabanebashiSta, radius: 150)
+                    
+                    Marker("赤羽橋駅", coordinate: akabanebashiData.coordinate)
+                    MapCircle(center: akabanebashiData.coordinate, radius: 150)
                         .strokeStyle(style: .init(lineWidth: 2, lineCap: .round, lineJoin: .round, dash: []))
-                        .foregroundStyle(.blue.opacity(0.3))
+                        .foregroundStyle(akabanebashiData.isAchived ? Color.red.opacity(0.3) : Color.blue.opacity(0.3))
                         .mapOverlayLevel(level: .aboveLabels)
-                    Annotation("芝公園駅",coordinate: .shibakouenSta, anchor: .bottom) {
+                    
+                    Annotation("芝公園駅",coordinate: shibakouenData.coordinate, anchor: .bottom) {
                       VStack{
-                         Image("MainImage")
+                         Image("Himiko")
                               .resizable()
                               .frame(width: 50, height: 50)
                               .cornerRadius(25)
-                         //Text("芝公園駅")
                       }
                     }
-                    MapCircle(center: .shibakouenSta, radius: 150)
+                    MapCircle(center: shibakouenData.coordinate, radius: 1278)
                         .strokeStyle(style: .init(lineWidth: 2, lineCap: .round, lineJoin: .round, dash: []))
-                        .foregroundStyle(.blue.opacity(0.3))
+                        .foregroundStyle(shibakouenData.isAchived ? Color.red.opacity(0.3) : Color.blue.opacity(0.3))
                         .mapOverlayLevel(level: .aboveLabels)
-                    //Marker("芝公園駅", coordinate: .shibakouenSta)
                 }
                 .mapControls {
                     MapUserLocationButton()
@@ -84,14 +101,14 @@ struct LocationView: View {
                 .onChange(of: locationManager.userLocation) { newLocation in
                     checkProximity(
                         userLocation: newLocation,
-                        targetLocation: .akabanebashiSta,
-                        radius: 150
+                        radius: 150,
+                        targetLocation: akabanebashiData
                     )
-//                    checkProximity(
-//                        userLocation: newLocation,
-//                        targetLocation: .shibakouenSta,
-//                        radius: 1000
-//                    )
+                    checkProximity(
+                        userLocation: newLocation,
+                        radius: 1278,
+                        targetLocation: shibakouenData
+                    )
                 }
                 .onAppear {
                     if let firstLocation = locationManager.locations.first {
@@ -141,9 +158,5 @@ struct CustomButtonStyle: ButtonStyle {
             .shadow(color: configuration.isPressed ? Color.black.opacity(0.2) : Color.clear, radius: 10, x: 0, y: 5)
             .animation(.easeInOut(duration: 0.2), value: configuration.isPressed)
     }
-}
-
-#Preview {
-    LocationView()
 }
 

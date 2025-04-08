@@ -15,6 +15,10 @@ struct ContentView: View {
     @State var isPresented = false
     @StateObject private var gvm = GlobalViewModel.shared
     @StateObject var authManager: AuthManager = .shared
+    
+    init() {
+        _ = ContentViewModel()
+    }
 
     var body: some View {
         if authManager.isAuthenticated {

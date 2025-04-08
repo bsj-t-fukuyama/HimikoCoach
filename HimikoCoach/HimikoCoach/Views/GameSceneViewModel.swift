@@ -7,16 +7,22 @@
 
 import SwiftUI
 
+struct DummyCharacter {
+    var id: Int
+    var name: String
+    var rank: String
+}
+
 final class GameSceneViewModel: ObservableObject {
-    let stringArray: [String]
-    @Published var currentIndex: Int = 1
+    let charactersArray: [DummyCharacter]
+    @Published var currentIndex: Int = 0
     
-    init(stringArray: [String]) {
-        self.stringArray = stringArray
+    init(charactersArray: [DummyCharacter]) {
+        self.charactersArray = charactersArray
     }
     
     var isFinished: Bool {
-        if currentIndex < stringArray.count {
+        if currentIndex < charactersArray.count {
             return false
         } else {
             return true

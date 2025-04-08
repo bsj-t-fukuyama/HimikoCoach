@@ -10,6 +10,11 @@ import SpriteKit
 
 struct ConscriptionView: View {
     @StateObject private var gvm = GlobalViewModel.shared
+    let character1 = DummyCharacter(id: 1, name: "卑弥呼", rank: "B")
+    let character2 = DummyCharacter(id: 2, name: "中大兄皇子", rank: "B")
+    let character3 = DummyCharacter(id: 3, name: "聖徳太子", rank: "B")
+    let character4 = DummyCharacter(id: 4, name: "福山", rank: "B")
+    let character5 = DummyCharacter(id: 5, name: "ガリレオ・ガリレイ", rank: "S")
     
     var body: some View {
         VStack {
@@ -28,9 +33,18 @@ struct ConscriptionView: View {
                         }
                         .navigationDestination(isPresented: $gvm.sceneIsPresented) {
                             GeometryReader {
-                                SpriteView(scene: StartScene(size: $0.size, stringArray: ["0", "1", "2", "3", "4"]))
-                                    .edgesIgnoringSafeArea(.all)
-                                    .navigationBarBackButtonHidden(true)
+                                SpriteView(scene: StartScene(
+                                    size: $0.size,
+                                    charactersArray: [
+                                        character1,
+                                        character2,
+                                        character3,
+                                        character4,
+                                        character5
+                                    ]
+                                ))
+                                .edgesIgnoringSafeArea(.all)
+                                .navigationBarBackButtonHidden(true)
                             }
                         }
                 }
