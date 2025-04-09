@@ -8,17 +8,17 @@
 import Foundation
 
 struct MasterLocationData: Codable, Equatable, Hashable {
-    var displayName: String
     var id: Int
-    var latitude: Float
+    var displayName: String
     var description: String
+    var latitude: Float
     var longitude: Float
     
     enum CodingKeys: String, CodingKey {
-        case displayName = "display_name"
         case id
-        case latitude
+        case displayName = "display_name"
         case description
+        case latitude
         case longitude
     }
 }

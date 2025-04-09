@@ -68,6 +68,6 @@ struct HeaderView: View {
             }
             .padding(10)
         }
-        .background(Color("BrandColor"))
+        .background(Color.additionalVitalDark)
     }
 }
